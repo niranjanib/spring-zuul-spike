@@ -10,4 +10,8 @@ zuul:
     greetings:
       path: "/api/**"
       url: "http://localhost:8080"
-
+# Disable the LocationRewriteFilter using the below config.
+# By default, this filter will be enabled if the LocationRewriteFilter bean has been added
+  LocationRewriteFilter:
+    post:
+      disable: true

@@ -1,0 +1,13 @@
+server:
+  port: 9000
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health"
+zuul:
+  routes:
+    tomcat:
+      path: "/api/**"
+      url: "http://localhost:8080"
+

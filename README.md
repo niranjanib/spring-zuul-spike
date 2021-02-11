@@ -27,3 +27,8 @@ will return 404.
 2. *LocationRewriteFilter* (refer [spring doc](https://docs.spring.io/spring-cloud-netflix/docs/2.2.4.RELEASE/reference/html/#zuul-redirect-location-rewrite)): 
     - Remove `LocationRewriteFilter` related config from zuul proxy service's application.yml and restart the zuul proxy service.
     - `curl --location --request GET 'http://localhost:9000/api/greet/john'` should return Hello John
+    - Caveat of using `LocationRewriteFilter` is that 
+        ```. 
+      As mentioned in the docs, this filter acts on the Location header of ALL 3XX response codes, which may not be appropriate in all scenarios, such as when redirecting the user to an external URL.
+        ```
+        - This can be tested by running `curl --location --request GET 'http://localhost:9000/api/go-to-google'`. This will return a 404 not found error, stating "/" is not found.

@@ -40,4 +40,11 @@ public class FarewellController {
     private String getForwardedPrefix(HttpServletRequest request) {
         return isNull(request.getHeader("X-Forwarded-Prefix")) ? "" : request.getHeader("X-Forwarded-Prefix");
     }
+
+    @GetMapping("/go-to-google")
+    public ResponseEntity redirectToBye() {
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.setLocation(URI.create("https://www.google.com/"));
+        return new ResponseEntity<>(responseHeaders, HttpStatus.FOUND);
+    }
 }
